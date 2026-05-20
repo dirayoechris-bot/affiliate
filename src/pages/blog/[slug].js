@@ -23,50 +23,45 @@ export async function getStaticProps({ params }) {
 export default function Post({ meta, content }) {
   return (
     <Layout title={`${meta.title} — Yoga Path Guide`} description={meta.excerpt}>
-      <article className="max-w-2xl mx-auto">
-        {/* Breadcrumb */}
-        <nav className="text-xs text-gray-400 mb-10">
-          <Link href="/" className="hover:text-sage-600 transition-colors duration-300">Home</Link>
-          <span className="mx-2 text-gray-300">·</span>
-          <Link href="/blog" className="hover:text-sage-600 transition-colors duration-300">Articles</Link>
+      <article>
+        <nav className="text-[11px] text-stone tracking-wide mb-12">
+          <Link href="/" className="hover:text-ink transition-colors duration-300">Home</Link>
+          <span className="mx-2 text-driftwood">·</span>
+          <Link href="/blog" className="hover:text-ink transition-colors duration-300">Articles</Link>
         </nav>
 
-        {/* Header — spacious, calm */}
-        <header className="mb-12 text-center sm:text-center">
-          <h1 className="font-serif text-2xl sm:text-4xl text-gray-800 leading-tight mb-4">{meta.title}</h1>
-          <div className="flex items-center justify-center gap-3 text-sm text-gray-400">
-            <time>{meta.date}</time>
-            <span className="text-sage-300">·</span>
-            <span>{meta.readTime || '8 min read'}</span>
-          </div>
+        <header className="mb-14">
+          <h1 className="font-serif text-[clamp(1.75rem,4vw,2.5rem)] text-ink leading-[1.15] tracking-[-0.01em] mb-4">{meta.title}</h1>
+          <p className="text-[13px] text-stone">
+            {meta.date}<span className="mx-2 text-driftwood">·</span>{meta.readTime || '8 min read'}
+          </p>
         </header>
 
-        {/* Content */}
-        <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
+        <div className="prose" dangerouslySetInnerHTML={{ __html: content }} />
 
         {/* Gentle CTA */}
-        <div className="mt-20 rounded-3xl bg-sage-50 p-10 sm:p-12 text-center border border-sage-100">
-          <p className="font-serif text-2xl text-gray-800 mb-3">Continue your journey</p>
-          <p className="text-gray-500 mb-6 max-w-sm mx-auto leading-relaxed text-sm">
-            Our free guide covers everything you need before choosing a program. Take your time with it.
+        <div className="mt-20 bg-parchment rounded-card p-8 sm:p-10">
+          <p className="font-serif text-xl text-ink mb-2">Continue your journey</p>
+          <p className="text-bark text-[14px] leading-relaxed mb-6 max-w-[340px]">
+            Our free guide covers everything before you choose a program.
           </p>
-          <Link href="/free-guide" className="inline-block bg-sage-600 text-white px-7 py-3.5 rounded-full hover:bg-sage-700 transition-all duration-300 text-sm font-medium">
-            Get the Free Guide
+          <Link href="/free-guide" className="inline-block bg-sage-deep text-white px-6 py-3 rounded-pill text-[13px] font-medium hover:opacity-90 transition-opacity duration-300">
+            Get the free guide
           </Link>
         </div>
 
-        {/* Related — subtle */}
-        <div className="mt-14 pt-10 border-t border-earth-200">
-          <p className="text-xs uppercase tracking-widest text-gray-400 mb-5">You might also enjoy</p>
-          <div className="space-y-3">
-            <Link href="/blog/best-online-yoga-teacher-training-2026" className="group block py-3 border-b border-earth-100 hover:border-sage-200 transition-colors duration-300">
-              <p className="text-gray-700 group-hover:text-sage-700 transition-colors duration-300">7 Best Online Yoga Teacher Training Programs 2026</p>
+        {/* Related */}
+        <div className="mt-16 pt-10 border-t border-driftwood">
+          <p className="text-[11px] uppercase tracking-[0.08em] text-stone mb-6">Keep reading</p>
+          <div className="space-y-4">
+            <Link href="/blog/best-online-yoga-teacher-training-2026" className="group block">
+              <p className="text-bark group-hover:text-sage-deep transition-colors duration-300">7 Best Online Yoga Teacher Training Programs 2026</p>
             </Link>
-            <Link href="/blog/is-online-yoga-teacher-training-worth-it" className="group block py-3 border-b border-earth-100 hover:border-sage-200 transition-colors duration-300">
-              <p className="text-gray-700 group-hover:text-sage-700 transition-colors duration-300">Is Online Yoga Teacher Training Worth It?</p>
+            <Link href="/blog/is-online-yoga-teacher-training-worth-it" className="group block">
+              <p className="text-bark group-hover:text-sage-deep transition-colors duration-300">Is Online Yoga Teacher Training Worth It?</p>
             </Link>
-            <Link href="/blog/akasha-yoga-academy-review-2026" className="group block py-3">
-              <p className="text-gray-700 group-hover:text-sage-700 transition-colors duration-300">Akasha Yoga Academy Review 2026</p>
+            <Link href="/blog/akasha-yoga-academy-review-2026" className="group block">
+              <p className="text-bark group-hover:text-sage-deep transition-colors duration-300">Akasha Yoga Academy Review 2026</p>
             </Link>
           </div>
         </div>

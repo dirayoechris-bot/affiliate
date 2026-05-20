@@ -4,84 +4,81 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <Layout>
-      {/* Hero — spacious, calm, inviting */}
-      <section className="py-14 sm:py-32 text-center">
-        <p className="text-sage-600 text-sm tracking-wide mb-5 sm:mb-6 font-medium">Honest guidance for your yoga journey</p>
-        <h1 className="font-serif text-4xl sm:text-7xl text-gray-800 mb-6 sm:mb-8 leading-[1.15] sm:leading-[1.1]">
-          Begin your path<br />to teaching yoga
+      {/* Hero — generous space, serif display, calm */}
+      <section className="pt-16 pb-24 sm:pt-24 sm:pb-32">
+        <p className="text-[11px] uppercase tracking-[0.08em] text-stone mb-6">Honest guidance</p>
+        <h1 className="font-serif text-[clamp(2.5rem,6vw,4rem)] text-ink leading-[1.1] tracking-[-0.02em] mb-6">
+          Begin your path to<br />teaching yoga
         </h1>
-        <p className="text-base sm:text-lg text-gray-500 max-w-lg mx-auto mb-10 sm:mb-12 leading-relaxed font-light px-4">
-          We reviewed 15+ programs to help you find the training that truly resonates — 
-          so you can teach from the heart.
+        <p className="text-bark leading-relaxed max-w-[420px] mb-10">
+          We reviewed 15+ programs to help you find the training that resonates — so you can teach from the heart.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-          <Link href="/blog/best-online-yoga-teacher-training-2026" className="bg-sage-600 text-white px-8 py-4 rounded-full hover:bg-sage-700 transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md">
-            Explore Top Programs
+        <div className="flex flex-wrap gap-3">
+          <Link href="/blog/best-online-yoga-teacher-training-2026" className="bg-sage-deep text-white px-6 py-3 rounded-pill text-[13px] font-medium hover:opacity-90 transition-opacity duration-300">
+            Explore top programs
           </Link>
-          <Link href="/free-guide" className="text-sage-700 px-8 py-4 rounded-full hover:bg-sage-50 transition-all duration-300 text-sm font-medium border border-sage-200">
-            Download Free Guide
+          <Link href="/free-guide" className="border border-driftwood text-bark px-6 py-3 rounded-pill text-[13px] font-medium hover:border-sage transition-colors duration-300">
+            Free guide
           </Link>
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="flex justify-center py-8">
-        <span className="text-sage-300 text-2xl">✦</span>
-      </div>
+      {/* Articles — clean list, no card nesting */}
+      <section className="pb-24">
+        <p className="text-[11px] uppercase tracking-[0.08em] text-stone mb-8">Start here</p>
 
-      {/* Featured — calm cards with breathing room */}
-      <section className="py-12">
-        <p className="text-center text-xs uppercase tracking-widest text-gray-400 mb-10">Start Here</p>
-        <div className="space-y-4">
-          <Link href="/blog/akasha-yoga-academy-review-2026" className="group block bg-white rounded-2xl p-8 sm:p-10 border border-earth-200 hover:border-sage-300 hover:shadow-sm transition-all duration-500">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="space-y-px">
+          <Link href="/blog/akasha-yoga-academy-review-2026" className="group block py-6 border-t border-driftwood">
+            <div className="flex items-start justify-between gap-4">
               <div>
-                <span className="text-xs text-sage-600 font-medium tracking-wide">Our Top Pick</span>
-                <h2 className="font-serif text-2xl sm:text-3xl text-gray-800 mt-2 group-hover:text-sage-700 transition-colors duration-300">Akasha Yoga Academy Review</h2>
-                <p className="text-gray-500 mt-2 leading-relaxed">4.9/5 rating · 1,100+ graduates · Breath-based Hatha from Bali · From $290</p>
+                <p className="text-[11px] text-sage font-medium tracking-wide mb-1.5">Top Pick</p>
+                <h2 className="font-serif text-2xl sm:text-[1.75rem] text-ink group-hover:text-sage-deep transition-colors duration-300">Akasha Yoga Academy Review</h2>
+                <p className="text-stone text-[14px] mt-1.5">4.9/5 · 1,100+ graduates · From $290</p>
               </div>
-              <span className="text-sage-400 group-hover:translate-x-2 transition-transform duration-500 text-xl hidden sm:block">→</span>
+              <span className="text-driftwood group-hover:text-sage group-hover:translate-x-1 transition-all duration-500 mt-2 text-lg shrink-0">→</span>
             </div>
           </Link>
 
-          <div className="grid sm:grid-cols-2 gap-4">
-            <Link href="/blog/best-online-yoga-teacher-training-2026" className="group block bg-white rounded-2xl p-8 border border-earth-200 hover:border-sage-300 hover:shadow-sm transition-all duration-500">
-              <span className="text-xs text-gray-400 font-medium tracking-wide">Comparison</span>
-              <h3 className="font-serif text-xl text-gray-800 mt-2 group-hover:text-sage-700 transition-colors duration-300">7 Best Online Programs 2026</h3>
-              <p className="text-gray-500 text-sm mt-2 leading-relaxed">Side-by-side: pricing, style, reviews, and who each is best for.</p>
-            </Link>
+          <Link href="/blog/best-online-yoga-teacher-training-2026" className="group block py-6 border-t border-driftwood">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-[11px] text-stone font-medium tracking-wide mb-1.5">Comparison</p>
+                <h2 className="font-serif text-2xl sm:text-[1.75rem] text-ink group-hover:text-sage-deep transition-colors duration-300">7 Best Online Programs 2026</h2>
+                <p className="text-stone text-[14px] mt-1.5">Pricing, style, reviews — side by side</p>
+              </div>
+              <span className="text-driftwood group-hover:text-sage group-hover:translate-x-1 transition-all duration-500 mt-2 text-lg shrink-0">→</span>
+            </div>
+          </Link>
 
-            <Link href="/blog/is-online-yoga-teacher-training-worth-it" className="group block bg-white rounded-2xl p-8 border border-earth-200 hover:border-sage-300 hover:shadow-sm transition-all duration-500">
-              <span className="text-xs text-gray-400 font-medium tracking-wide">Guide</span>
-              <h3 className="font-serif text-xl text-gray-800 mt-2 group-hover:text-sage-700 transition-colors duration-300">Is Online YTT Worth It?</h3>
-              <p className="text-gray-500 text-sm mt-2 leading-relaxed">Honest pros, cons, real costs, and what graduates say.</p>
-            </Link>
-          </div>
+          <Link href="/blog/is-online-yoga-teacher-training-worth-it" className="group block py-6 border-t border-b border-driftwood">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-[11px] text-stone font-medium tracking-wide mb-1.5">Guide</p>
+                <h2 className="font-serif text-2xl sm:text-[1.75rem] text-ink group-hover:text-sage-deep transition-colors duration-300">Is Online YTT Worth It?</h2>
+                <p className="text-stone text-[14px] mt-1.5">Honest pros, cons, and real costs</p>
+              </div>
+              <span className="text-driftwood group-hover:text-sage group-hover:translate-x-1 transition-all duration-500 mt-2 text-lg shrink-0">→</span>
+            </div>
+          </Link>
         </div>
       </section>
 
-      {/* Gentle CTA */}
-      <section className="my-16 bg-sage-50 rounded-3xl p-10 sm:p-14 text-center border border-sage-100">
-        <p className="font-serif text-3xl text-gray-800 mb-4">Begin with clarity</p>
-        <p className="text-gray-500 max-w-md mx-auto mb-8 leading-relaxed">
-          Our free guide walks you through everything — from choosing a style to landing your first class. 
-          No rush. Take your time.
+      {/* CTA — single, calm, no pressure */}
+      <section className="bg-parchment rounded-card p-8 sm:p-12 mb-24">
+        <p className="font-serif text-2xl sm:text-[1.75rem] text-ink mb-3 leading-tight">Begin with clarity</p>
+        <p className="text-bark text-[15px] leading-relaxed max-w-[380px] mb-8">
+          Our free guide walks you through everything before you choose a program. Take your time.
         </p>
-        <Link href="/free-guide" className="inline-block bg-sage-600 text-white px-8 py-4 rounded-full hover:bg-sage-700 transition-all duration-300 text-sm font-medium">
-          Get the Free Guide →
+        <Link href="/free-guide" className="inline-block bg-sage-deep text-white px-6 py-3 rounded-pill text-[13px] font-medium hover:opacity-90 transition-opacity duration-300">
+          Get the free guide
         </Link>
-        <p className="text-xs text-gray-400 mt-4">No spam · Unsubscribe anytime</p>
       </section>
 
-      {/* Trust — subtle, not aggressive */}
-      <section className="py-12 text-center">
-        <div className="flex flex-wrap justify-center gap-8 text-xs text-gray-400 tracking-wide">
-          <span>Verified pricing</span>
-          <span className="text-sage-300">·</span>
-          <span>No sponsored rankings</span>
-          <span className="text-sage-300">·</span>
-          <span>Updated May 2026</span>
-        </div>
+      {/* Trust — understated */}
+      <section className="pb-16 text-center">
+        <p className="text-[11px] text-stone tracking-wide">
+          Verified pricing · No sponsored rankings · Updated May 2026
+        </p>
       </section>
     </Layout>
   )

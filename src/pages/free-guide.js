@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout'
+import Link from 'next/link'
 import { useState } from 'react'
 
 export default function FreeGuide() {
@@ -11,19 +12,19 @@ export default function FreeGuide() {
   }
 
   return (
-    <Layout title="Free Yoga Teaching Guide — Yoga Path Guide" description="Download our free guide: everything you need to know before starting yoga teacher training.">
-      <div className="max-w-xl mx-auto py-16 sm:py-24 text-center">
-        <p className="text-sage-600 text-sm tracking-wide mb-6">Free Guide</p>
-        <h1 className="font-serif text-4xl sm:text-5xl text-gray-800 mb-4 leading-tight">
+    <Layout title="Free Yoga Teaching Guide — Yoga Path Guide" description="Everything you need to know before starting yoga teacher training.">
+      <div className="py-16 sm:py-24">
+        <p className="text-[11px] uppercase tracking-[0.08em] text-stone mb-6">Free guide</p>
+        <h1 className="font-serif text-[clamp(2rem,5vw,3rem)] text-ink leading-[1.15] mb-4">
           Your Yoga Teaching Journey
         </h1>
-        <p className="text-gray-500 mb-12 leading-relaxed">
-          Everything you need to know before taking the first step. 
-          7 chapters, no fluff — just honest guidance.
+        <p className="text-bark leading-relaxed max-w-[400px] mb-14">
+          Everything you need to know before taking the first step. Seven chapters, no fluff.
         </p>
 
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-earth-200 text-left mb-10">
-          <p className="text-xs uppercase tracking-widest text-gray-400 mb-6">What's inside</p>
+        {/* Contents */}
+        <div className="mb-14">
+          <p className="text-[11px] uppercase tracking-[0.08em] text-stone mb-6">Inside the guide</p>
           <div className="space-y-4">
             {[
               'Do you actually need certification?',
@@ -34,42 +35,43 @@ export default function FreeGuide() {
               'Life after certification',
               'Landing your first teaching opportunity',
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <span className="text-sage-400 mt-0.5 text-sm">{String(i + 1).padStart(2, '0')}</span>
-                <span className="text-gray-600">{item}</span>
+              <div key={i} className="flex items-baseline gap-4 py-2 border-b border-driftwood/50">
+                <span className="text-[12px] text-stone font-medium tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                <span className="text-bark">{item}</span>
               </div>
             ))}
           </div>
         </div>
 
+        {/* Form */}
         {submitted ? (
-          <div className="bg-sage-50 rounded-2xl p-10 border border-sage-100">
-            <p className="font-serif text-2xl text-gray-800 mb-2">On its way ✓</p>
-            <p className="text-gray-500">Check your inbox. It'll be there in a moment.</p>
+          <div className="bg-parchment rounded-card p-8">
+            <p className="font-serif text-xl text-ink mb-1">On its way</p>
+            <p className="text-stone text-[14px]">Check your inbox — it'll be there in a moment.</p>
           </div>
         ) : (
           <div>
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-[420px]">
               <input
                 type="email"
                 required
                 placeholder="Your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-5 py-4 border border-earth-200 rounded-full focus:outline-none focus:border-sage-400 bg-white text-gray-700 transition-colors duration-300"
+                className="flex-1 px-5 py-3 border border-driftwood rounded-pill bg-white text-ink placeholder:text-stone focus:outline-none focus:border-sage transition-colors duration-300"
                 aria-label="Email address"
               />
-              <button type="submit" className="bg-sage-600 text-white px-7 py-4 rounded-full hover:bg-sage-700 transition-all duration-300 font-medium text-sm whitespace-nowrap">
+              <button type="submit" className="bg-sage-deep text-white px-6 py-3 rounded-pill text-[13px] font-medium hover:opacity-90 transition-opacity duration-300 whitespace-nowrap">
                 Send it to me
               </button>
             </form>
-            <p className="text-xs text-gray-400 mt-4">No spam, ever. Just the guide + 5 helpful emails.</p>
+            <p className="text-[12px] text-stone mt-4">No spam. Just the guide and 5 helpful emails over 9 days.</p>
           </div>
         )}
 
-        <div className="mt-16 pt-10 border-t border-earth-200">
-          <p className="text-sm text-gray-400">
-            Prefer to browse? Read our <Link href="/blog" className="text-sage-600 hover:text-sage-700 transition-colors duration-300">articles</Link> — no email needed.
+        <div className="mt-20 pt-10 border-t border-driftwood">
+          <p className="text-[13px] text-stone">
+            Prefer to browse? Our <Link href="/blog" className="text-sage hover:text-sage-deep transition-colors duration-300">articles</Link> are free to read — no email needed.
           </p>
         </div>
       </div>

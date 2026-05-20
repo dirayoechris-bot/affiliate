@@ -1,124 +1,155 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito+Sans:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
   body {
-    @apply text-gray-600 antialiased;
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito Sans', system-ui, sans-serif;
     font-weight: 300;
+    font-size: 16px;
     line-height: 1.85;
     letter-spacing: 0.01em;
+    color: #6b6259;
+    background: #faf8f5;
+    -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4 {
-    font-family: 'Cormorant Garamond', serif;
-    @apply text-gray-800;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+    color: #2c2825;
   }
   ::selection {
-    @apply bg-sage-100/70 text-sage-900;
-  }
-  * {
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    background: #e8f0e4;
+    color: #2c2825;
   }
 }
 
 @layer components {
-  /* Smooth fade-in for page content */
   main {
-    animation: breatheIn 0.8s ease-out;
+    animation: enter 0.8s ease-out;
   }
-  @keyframes breatheIn {
-    from { opacity: 0; transform: translateY(8px); }
+  @keyframes enter {
+    from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* Prose — editorial reading experience */
   .prose h2 {
-    @apply text-3xl mt-14 mb-5 text-gray-800;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+    font-size: 1.75rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #2c2825;
+    margin-top: 3.5rem;
+    margin-bottom: 1.25rem;
   }
   .prose h3 {
-    @apply text-xl mt-10 mb-4 text-gray-700;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-weight: 500;
+    font-size: 1.35rem;
+    line-height: 1.3;
+    color: #2c2825;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
   }
   .prose p {
-    @apply mb-6 text-gray-600;
+    color: #6b6259;
     line-height: 1.9;
-  }
-  .prose ul {
-    @apply list-none pl-0 mb-6 space-y-3;
-  }
-  .prose ul li {
-    @apply text-gray-600 pl-6 relative;
-    line-height: 1.8;
-  }
-  .prose ul li::before {
-    content: '·';
-    @apply absolute left-0 text-sage-400 text-xl;
-  }
-  .prose ol {
-    @apply list-decimal pl-6 mb-6 space-y-3;
-  }
-  .prose ol li {
-    @apply text-gray-600;
-    line-height: 1.8;
+    margin-bottom: 1.5rem;
   }
   .prose a {
-    @apply text-sage-600 no-underline border-b border-sage-200 hover:border-sage-500 transition-all duration-300;
+    color: #6b8f5e;
+    text-decoration: none;
+    border-bottom: 1px solid #e8f0e4;
+    transition: border-color 300ms ease;
   }
-  .prose blockquote {
-    @apply border-l-2 border-sage-300 pl-6 py-2 my-8 text-gray-500 italic;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    line-height: 1.7;
-  }
-  .prose table {
-    @apply w-full my-8 text-sm;
-  }
-  .prose thead th {
-    @apply text-left px-4 py-3 font-medium text-gray-500 text-xs uppercase tracking-wider border-b border-gray-200;
-    font-family: 'Nunito Sans', sans-serif;
-  }
-  .prose tbody td {
-    @apply px-4 py-3.5 border-b border-gray-50 text-gray-600;
-  }
-  .prose tbody tr {
-    @apply transition-colors duration-200;
-  }
-  .prose tbody tr:hover {
-    @apply bg-sage-50/30;
+  .prose a:hover {
+    border-color: #6b8f5e;
   }
   .prose strong {
-    @apply text-gray-700 font-medium;
+    color: #2c2825;
+    font-weight: 500;
+  }
+  .prose ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+  }
+  .prose ul li {
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.85;
+    margin-bottom: 0.5rem;
+    color: #6b6259;
+  }
+  .prose ul li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: #9c9488;
+  }
+  .prose ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .prose ol li {
+    line-height: 1.85;
+    margin-bottom: 0.5rem;
+    color: #6b6259;
+  }
+  .prose blockquote {
+    border-left: 2px solid #6b8f5e;
+    padding: 0.75rem 1.5rem;
+    margin: 2rem 0;
+    background: #f3efe9;
+    border-radius: 0 8px 8px 0;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #6b6259;
+  }
+  .prose table {
+    width: 100%;
+    margin: 2rem 0;
+    font-size: 0.875rem;
+    border-collapse: collapse;
+  }
+  .prose thead th {
+    text-align: left;
+    padding: 0.75rem 1rem;
     font-family: 'Nunito Sans', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9c9488;
+    border-bottom: 1px solid #e8e2da;
+  }
+  .prose tbody td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f3efe9;
+    color: #6b6259;
+  }
+  .prose tbody tr:hover {
+    background: #faf8f5;
   }
   .prose hr {
-    @apply my-12 border-gray-100;
+    border: none;
+    border-top: 1px solid #e8e2da;
+    margin: 3rem 0;
   }
 
-  /* Mobile: horizontal scroll for tables */
-  .prose table {
-    @apply block overflow-x-auto whitespace-nowrap;
-  }
-  @media (min-width: 640px) {
-    .prose table {
-      @apply table whitespace-normal;
-    }
-  }
-
-  /* Mobile: touch-friendly links */
+  /* Mobile table scroll */
   @media (max-width: 639px) {
-    .prose a {
-      @apply py-0.5;
+    .prose table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
     }
   }
 }
