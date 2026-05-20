@@ -23,55 +23,50 @@ export async function getStaticProps({ params }) {
 export default function Post({ meta, content }) {
   return (
     <Layout title={`${meta.title} — Yoga Path Guide`} description={meta.excerpt}>
-      <article className="max-w-3xl mx-auto">
+      <article className="max-w-2xl mx-auto">
         {/* Breadcrumb */}
-        <nav className="text-xs text-gray-400 mb-8 flex items-center gap-2">
-          <Link href="/" className="hover:text-gray-600 transition-colors">Home</Link>
-          <span>›</span>
-          <Link href="/blog" className="hover:text-gray-600 transition-colors">Blog</Link>
-          <span>›</span>
-          <span className="text-gray-500 truncate">{meta.title}</span>
+        <nav className="text-xs text-gray-400 mb-10">
+          <Link href="/" className="hover:text-sage-600 transition-colors duration-300">Home</Link>
+          <span className="mx-2 text-gray-300">·</span>
+          <Link href="/blog" className="hover:text-sage-600 transition-colors duration-300">Articles</Link>
         </nav>
 
-        {/* Header */}
-        <header className="mb-10">
-          <h1 className="text-3xl sm:text-[2.5rem] font-bold leading-[1.15] tracking-tight mb-4">{meta.title}</h1>
-          <div className="flex items-center gap-3 text-sm text-gray-400">
+        {/* Header — spacious, calm */}
+        <header className="mb-12 text-center sm:text-center">
+          <h1 className="font-serif text-2xl sm:text-4xl text-gray-800 leading-tight mb-4">{meta.title}</h1>
+          <div className="flex items-center justify-center gap-3 text-sm text-gray-400">
             <time>{meta.date}</time>
-            <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
+            <span className="text-sage-300">·</span>
             <span>{meta.readTime || '8 min read'}</span>
           </div>
-          {meta.excerpt && (
-            <p className="mt-6 text-lg text-gray-500 leading-relaxed">
-              {meta.excerpt}
-            </p>
-          )}
         </header>
 
         {/* Content */}
         <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
 
-        {/* Bottom CTA */}
-        <div className="mt-16 rounded-2xl bg-gradient-to-br from-sage-50 to-warm-50 p-8 sm:p-10 text-center border border-sage-100/50">
-          <p className="text-3xl mb-3">📖</p>
-          <h3 className="text-xl font-bold mb-2">Not sure which program is right for you?</h3>
-          <p className="text-gray-600 mb-6 max-w-md mx-auto text-sm">Our free guide covers choosing a style, realistic costs, red flags, and what to expect after certification.</p>
-          <Link href="/free-guide" className="inline-block bg-gray-900 text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-colors text-sm font-medium">
-            Get the Free Guide →
+        {/* Gentle CTA */}
+        <div className="mt-20 rounded-3xl bg-sage-50 p-10 sm:p-12 text-center border border-sage-100">
+          <p className="font-serif text-2xl text-gray-800 mb-3">Continue your journey</p>
+          <p className="text-gray-500 mb-6 max-w-sm mx-auto leading-relaxed text-sm">
+            Our free guide covers everything you need before choosing a program. Take your time with it.
+          </p>
+          <Link href="/free-guide" className="inline-block bg-sage-600 text-white px-7 py-3.5 rounded-full hover:bg-sage-700 transition-all duration-300 text-sm font-medium">
+            Get the Free Guide
           </Link>
         </div>
 
-        {/* Related */}
-        <div className="mt-12 pt-10 border-t border-gray-100">
-          <h3 className="font-bold text-sm text-gray-400 uppercase tracking-wide mb-4">Keep Reading</h3>
-          <div className="grid sm:grid-cols-2 gap-3">
-            <Link href="/blog/best-online-yoga-teacher-training-2026" className="p-4 rounded-xl border border-gray-100 hover:border-sage-200 hover:bg-sage-50/30 transition-all group">
-              <p className="font-medium text-sm group-hover:text-sage-700 transition-colors">7 Best Online YTT Programs 2026</p>
-              <p className="text-xs text-gray-400 mt-1">Comparison</p>
+        {/* Related — subtle */}
+        <div className="mt-14 pt-10 border-t border-earth-200">
+          <p className="text-xs uppercase tracking-widest text-gray-400 mb-5">You might also enjoy</p>
+          <div className="space-y-3">
+            <Link href="/blog/best-online-yoga-teacher-training-2026" className="group block py-3 border-b border-earth-100 hover:border-sage-200 transition-colors duration-300">
+              <p className="text-gray-700 group-hover:text-sage-700 transition-colors duration-300">7 Best Online Yoga Teacher Training Programs 2026</p>
             </Link>
-            <Link href="/blog/is-online-yoga-teacher-training-worth-it" className="p-4 rounded-xl border border-gray-100 hover:border-sage-200 hover:bg-sage-50/30 transition-all group">
-              <p className="font-medium text-sm group-hover:text-sage-700 transition-colors">Is Online YTT Worth It?</p>
-              <p className="text-xs text-gray-400 mt-1">Guide</p>
+            <Link href="/blog/is-online-yoga-teacher-training-worth-it" className="group block py-3 border-b border-earth-100 hover:border-sage-200 transition-colors duration-300">
+              <p className="text-gray-700 group-hover:text-sage-700 transition-colors duration-300">Is Online Yoga Teacher Training Worth It?</p>
+            </Link>
+            <Link href="/blog/akasha-yoga-academy-review-2026" className="group block py-3">
+              <p className="text-gray-700 group-hover:text-sage-700 transition-colors duration-300">Akasha Yoga Academy Review 2026</p>
             </Link>
           </div>
         </div>

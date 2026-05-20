@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,64 +9,116 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply text-gray-700 font-sans antialiased;
-    line-height: 1.7;
+    @apply text-gray-600 antialiased;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.85;
+    letter-spacing: 0.01em;
   }
   h1, h2, h3, h4 {
-    @apply font-bold text-gray-900;
-    letter-spacing: -0.02em;
+    font-family: 'Cormorant Garamond', serif;
+    @apply text-gray-800;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
   }
   ::selection {
-    @apply bg-sage-100 text-sage-900;
+    @apply bg-sage-100/70 text-sage-900;
+  }
+  * {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
 @layer components {
+  /* Smooth fade-in for page content */
+  main {
+    animation: breatheIn 0.8s ease-out;
+  }
+  @keyframes breatheIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   .prose h2 {
-    @apply text-2xl mt-12 mb-4 text-gray-900 pb-2;
+    @apply text-3xl mt-14 mb-5 text-gray-800;
+    font-family: 'Cormorant Garamond', serif;
   }
   .prose h3 {
-    @apply text-lg font-semibold mt-8 mb-3 text-gray-800;
+    @apply text-xl mt-10 mb-4 text-gray-700;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
   }
   .prose p {
-    @apply mb-5 text-gray-600;
-    line-height: 1.8;
+    @apply mb-6 text-gray-600;
+    line-height: 1.9;
   }
   .prose ul {
-    @apply list-disc pl-6 mb-5 space-y-2;
+    @apply list-none pl-0 mb-6 space-y-3;
+  }
+  .prose ul li {
+    @apply text-gray-600 pl-6 relative;
+    line-height: 1.8;
+  }
+  .prose ul li::before {
+    content: '·';
+    @apply absolute left-0 text-sage-400 text-xl;
   }
   .prose ol {
-    @apply list-decimal pl-6 mb-5 space-y-2;
+    @apply list-decimal pl-6 mb-6 space-y-3;
   }
-  .prose li {
+  .prose ol li {
     @apply text-gray-600;
-    line-height: 1.7;
+    line-height: 1.8;
   }
   .prose a {
-    @apply text-sage-600 font-medium underline decoration-sage-200 underline-offset-4 hover:decoration-sage-500 transition-all;
+    @apply text-sage-600 no-underline border-b border-sage-200 hover:border-sage-500 transition-all duration-300;
   }
   .prose blockquote {
-    @apply border-l-[3px] border-sage-400 pl-5 py-3 my-6 bg-sage-50/50 rounded-r-xl text-gray-600 italic;
+    @apply border-l-2 border-sage-300 pl-6 py-2 my-8 text-gray-500 italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
   }
   .prose table {
-    @apply w-full my-8 text-sm rounded-xl overflow-hidden;
+    @apply w-full my-8 text-sm;
   }
   .prose thead th {
-    @apply bg-gray-50 text-left px-4 py-3 font-semibold text-gray-800 text-xs uppercase tracking-wide;
+    @apply text-left px-4 py-3 font-medium text-gray-500 text-xs uppercase tracking-wider border-b border-gray-200;
+    font-family: 'Nunito Sans', sans-serif;
   }
   .prose tbody td {
-    @apply px-4 py-3 border-b border-gray-50;
+    @apply px-4 py-3.5 border-b border-gray-50 text-gray-600;
+  }
+  .prose tbody tr {
+    @apply transition-colors duration-200;
   }
   .prose tbody tr:hover {
-    @apply bg-gray-50/50;
+    @apply bg-sage-50/30;
   }
   .prose strong {
-    @apply text-gray-800 font-semibold;
+    @apply text-gray-700 font-medium;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
   }
   .prose hr {
-    @apply my-10 border-gray-100;
+    @apply my-12 border-gray-100;
   }
-  .prose img {
-    @apply rounded-xl;
+
+  /* Mobile: horizontal scroll for tables */
+  .prose table {
+    @apply block overflow-x-auto whitespace-nowrap;
+  }
+  @media (min-width: 640px) {
+    .prose table {
+      @apply table whitespace-normal;
+    }
+  }
+
+  /* Mobile: touch-friendly links */
+  @media (max-width: 639px) {
+    .prose a {
+      @apply py-0.5;
+    }
   }
 }
