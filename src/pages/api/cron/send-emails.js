@@ -42,7 +42,7 @@ export default async function handler(req, res) {
           sender: SENDER,
           to: [{ email: contact.email, name: contact.attributes?.FIRSTNAME || '' }],
           subject: emailToSend.subject,
-          textContent: emailToSend.body.replace(/{{name}}/g, contact.attributes?.FIRSTNAME || 'there'),
+          htmlContent: emailToSend.html,
         }),
       })
 

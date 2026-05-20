@@ -1,152 +1,164 @@
-// Nurture email sequence - sent via Brevo Transactional API
-// Triggered by cron or Vercel Cron
+const BRAND = {
+  bg: '#faf8f5',
+  card: '#ffffff',
+  text: '#6b6259',
+  heading: '#2c2825',
+  sage: '#6b8f5e',
+  sageDeep: '#4a6b3f',
+  border: '#e8e2da',
+  muted: '#9c9488',
+}
+
+function template(content) {
+  return `<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:${BRAND.bg};font-family:-apple-system,system-ui,'Segoe UI',sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.bg};padding:40px 20px;">
+<tr><td align="center">
+<table width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:${BRAND.card};border-radius:12px;border:1px solid ${BRAND.border};padding:40px 36px;">
+<tr><td>
+<!-- Logo -->
+<p style="margin:0 0 32px;font-size:15px;color:${BRAND.heading};font-weight:600;">🪷 Yoga Path Guide</p>
+<!-- Content -->
+${content}
+<!-- Footer -->
+<p style="margin:40px 0 0;padding-top:24px;border-top:1px solid ${BRAND.border};font-size:12px;color:${BRAND.muted};line-height:1.6;">
+You're receiving this because you downloaded our yoga teaching guide.<br>
+<a href="https://yogapathguide.com" style="color:${BRAND.muted};">yogapathguide.com</a> · <a href="%unsubscribe_url%" style="color:${BRAND.muted};">Unsubscribe</a>
+</p>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>`
+}
+
+function btn(text, url) {
+  return `<a href="${url}" style="display:inline-block;background:${BRAND.sageDeep};color:#ffffff;padding:12px 24px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:500;margin:8px 0;">${text}</a>`
+}
+
+function p(text) {
+  return `<p style="margin:0 0 16px;font-size:15px;line-height:1.8;color:${BRAND.text};">${text}</p>`
+}
+
+function h(text) {
+  return `<p style="margin:0 0 12px;font-size:20px;line-height:1.3;color:${BRAND.heading};font-weight:600;">${text}</p>`
+}
+
+function spacer() {
+  return `<div style="height:20px;"></div>`
+}
 
 const EMAILS = [
   {
     day: 0,
-    subject: "Your Yoga Teaching Guide is here 🧘",
-    body: `Hi {{name}},
-
-Your guide is ready — here's the download link:
-
-→ Download "Your Yoga Teaching Journey" (PDF)
-https://yogapathguide.com/guide
-
-Inside you'll find:
-- How to choose between yoga styles
-- Online vs in-person training (honest comparison)
-- Realistic cost breakdown
-- What to look for (and avoid) in a program
-- What happens after certification
-
-Take your time with it. There's no rush.
-
-Over the next few days, I'll share a few things I wish someone had told me before I started my yoga teaching journey. Short emails, no fluff.
-
-Talk soon,
-Yoga Path Guide
-
-P.S. — If you have questions about anything in the guide, just reply to this email. I read everything.`
+    subject: "Your yoga teaching guide is here 🪷",
+    html: template(`
+${h("Your guide is ready")}
+${p("Hi there — thanks for downloading. Here's your guide:")}
+${btn("Read Your Yoga Teaching Guide →", "https://yogapathguide.com/guide")}
+${spacer()}
+${p("Inside you'll find:")}
+<ul style="margin:0 0 16px;padding-left:20px;color:${BRAND.text};font-size:14px;line-height:2;">
+<li>How to choose between yoga styles</li>
+<li>Online vs in-person — honest comparison</li>
+<li>Realistic cost breakdown</li>
+<li>What to look for (and avoid)</li>
+<li>What happens after certification</li>
+</ul>
+${p("Take your time with it. No rush.")}
+${p("Over the next few days, I'll share a few things I wish someone told me before starting. Short emails, no fluff.")}
+${spacer()}
+${p("Talk soon,<br><strong style='color:${BRAND.heading}'>Yoga Path Guide</strong>")}
+${p("<em style='font-size:13px;color:${BRAND.muted}'>P.S. — Just reply if you have questions. I read everything.</em>")}
+`),
   },
   {
     day: 2,
     subject: "The #1 mistake people make choosing a YTT",
-    body: `Hi {{name}},
-
-Want to know the biggest mistake people make when choosing a yoga teacher training?
-
-They pick based on price alone.
-
-I get it — budget matters. But here's what happens:
-
-- They enroll in a $99 program
-- It's just pre-recorded videos with zero support
-- They never finish (or finish but don't feel ready to teach)
-- They spend MORE money on a second training
-
-The sweet spot? A program that's affordable AND has real support — live calls, mentorship, community.
-
-That's why reviews matter more than price tags. A $290 program with daily live Zoom calls and 4.9-star reviews will serve you better than a $2,500 program with no community.
-
-Tomorrow I'll share what I think makes a great online YTT (based on reviewing 15+ programs).
-
-— Yoga Path Guide`
+    html: template(`
+${h("The biggest mistake?")}
+${p("Picking based on price alone.")}
+${p("Here's what usually happens:")}
+<ul style="margin:0 0 16px;padding-left:20px;color:${BRAND.text};font-size:14px;line-height:2;">
+<li>Enroll in a $99 program</li>
+<li>It's just pre-recorded videos, zero support</li>
+<li>Never finish — or finish but don't feel ready</li>
+<li>Spend <em>more</em> money on a second training</li>
+</ul>
+${p("The sweet spot? A program that's <strong>affordable AND has real support</strong> — live calls, mentorship, community.")}
+${p("A $290 program with daily live Zoom calls and 4.9-star reviews will serve you better than a $2,500 program with no community.")}
+${spacer()}
+${p("Tomorrow: what makes a great online YTT (based on reviewing 15+ programs).")}
+${spacer()}
+${p("— Yoga Path Guide")}
+`),
   },
   {
     day: 4,
-    subject: "5 things every good YTT has (checklist)",
-    body: `Hi {{name}},
-
-After reviewing 15+ online yoga teacher training programs, here's my checklist for a great one:
-
-Must-haves:
-
-1. Yoga Alliance registered (RYS 200/300) — non-negotiable
-2. Live interaction — Zoom calls, Q&A, or mentorship (not just videos)
-3. Active community — WhatsApp group, forum, or cohort
-4. Money-back guarantee — shows they're confident in their product
-5. Real testimonials — with names, photos, and specific outcomes
-
-Red flags:
-
-- No Yoga Alliance registration
-- Under $100 (too cheap = no support)
-- "Limited spots!" pressure tactics
-- No refund policy
-- Can't find real graduate reviews
-
-If you want to see how specific programs stack up, I wrote a detailed comparison:
-
-→ 7 Best Online Yoga Teacher Training Programs 2026
-https://yogapathguide.com/blog/best-online-yoga-teacher-training-2026
-
-It covers pricing, pros/cons, and who each program is best for.
-
-— Yoga Path Guide`
+    subject: "5 things every good YTT has ✓",
+    html: template(`
+${h("My checklist after reviewing 15+ programs")}
+${spacer()}
+<table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:20px;">
+<tr><td style="padding:8px 0;font-size:14px;color:${BRAND.text};border-bottom:1px solid ${BRAND.border};">✓ &nbsp; Yoga Alliance registered (RYS 200/300)</td></tr>
+<tr><td style="padding:8px 0;font-size:14px;color:${BRAND.text};border-bottom:1px solid ${BRAND.border};">✓ &nbsp; Live calls or mentorship (not just videos)</td></tr>
+<tr><td style="padding:8px 0;font-size:14px;color:${BRAND.text};border-bottom:1px solid ${BRAND.border};">✓ &nbsp; Active student community</td></tr>
+<tr><td style="padding:8px 0;font-size:14px;color:${BRAND.text};border-bottom:1px solid ${BRAND.border};">✓ &nbsp; Money-back guarantee</td></tr>
+<tr><td style="padding:8px 0;font-size:14px;color:${BRAND.text};">✓ &nbsp; Real testimonials with names & outcomes</td></tr>
+</table>
+${p("<strong>Red flags:</strong> Under $100, no Yoga Alliance registration, \"limited spots!\" pressure, no refund policy.")}
+${p("I wrote a detailed comparison of 7 programs that pass this checklist:")}
+${btn("See the Full Comparison →", "https://yogapathguide.com/blog/best-online-yoga-teacher-training-2026")}
+${spacer()}
+${p("— Yoga Path Guide")}
+`),
   },
   {
     day: 6,
-    subject: "She quit her corporate job at 38. Here's what happened.",
-    body: `Hi {{name}},
-
-Quick story about someone who was probably in your shoes.
-
-Sarah was 38, burned out from her marketing job, and had been practicing yoga for 3 years. She kept thinking: "I want to teach this. But is it too late? Can I actually make a living?"
-
-She enrolled in an online yoga teacher training. Self-paced, so she could study around her job.
-
-6 months later, she was certified.
-3 months after that, she taught her first class.
-1 year later, she left her corporate job.
-
-Today she teaches 12 classes a week — a mix of studio, private clients, and online. She makes less than her corporate salary, but she says: "I wake up excited. I haven't felt that in a decade."
-
-The program she chose had:
-- Authentic, heart-centered teachers
-- A supportive community (even online)
-- Breath-based approach that went beyond just poses
-- Affordable pricing with payment plans
-
-That's exactly what Akasha Yoga Academy offers. 1,100+ graduates teaching on 6 continents, 4.9/5 star reviews, starting from $290 with a 14-day money-back guarantee.
-
-→ Read my full review of Akasha Yoga Academy
-https://yogapathguide.com/blog/akasha-yoga-academy-review-2026
-
-No pressure. Just wanted to share in case you're at that "should I do this?" stage.
-
-— Yoga Path Guide`
+    subject: "She quit her corporate job at 38",
+    html: template(`
+${h("A story you might relate to")}
+${p("Sarah was 38, burned out from marketing, practicing yoga for 3 years. She kept thinking: <em>\"Can I actually do this?\"</em>")}
+${p("She enrolled in an online YTT. Self-paced, around her job.")}
+<table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0;background:${BRAND.bg};border-radius:8px;padding:20px 24px;">
+<tr><td style="font-size:14px;line-height:1.8;color:${BRAND.text};">
+6 months → certified<br>
+9 months → first class<br>
+12 months → left corporate<br><br>
+<em>"I wake up excited. I haven't felt that in a decade."</em>
+</td></tr>
+</table>
+${p("The program she chose had authentic teachers, a supportive community, breath-based approach, and affordable pricing.")}
+${p("That's exactly what <strong>Akasha Yoga Academy</strong> offers — 1,100+ graduates, 4.9/5 reviews, starting from $290.")}
+${btn("Read My Full Review →", "https://yogapathguide.com/blog/akasha-yoga-academy-review-2026")}
+${spacer()}
+${p("No pressure. Just sharing in case you're at that \"should I?\" stage.")}
+${spacer()}
+${p("— Yoga Path Guide")}
+`),
   },
   {
     day: 9,
     subject: "A question for you",
-    body: `Hi {{name}},
-
-I have one question:
-
-If not now, when?
-
-I've seen so many people sit on the idea of yoga teacher training for months — even years. Waiting for the "right time." Waiting until they're "good enough." Waiting until they have more money saved.
-
-Here's the truth: there's never a perfect time. But there IS a good-enough time. And if you're reading this email, you're probably closer than you think.
-
-A few things that might help:
-
-If budget is the concern:
-Akasha Yoga Academy starts from $290 (with their current promo), with payment plans available for the Premium tier.
-
-If time is the concern:
-It's self-paced. No deadlines. Study 30 minutes a day, or binge on weekends.
-
-If confidence is the concern:
-You don't need to be "advanced." You need 6 months of regular practice and a genuine desire to learn.
-
-→ Check Akasha's current pricing
-https://www.akashayogaacademy.com/200hr-yoga-teacher-training-online#christianimm
-
-Whatever you decide, I'm glad you downloaded the guide. Your yoga journey is yours — on your timeline.
-
-Namaste 🙏
-Yoga Path Guide`
+    html: template(`
+${h("If not now, when?")}
+${p("I've seen people sit on this idea for months — waiting for the \"right time,\" waiting until they're \"good enough.\"")}
+${p("There's never a perfect time. But there is a good-enough time.")}
+${spacer()}
+<table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+<tr><td style="padding:12px 0;font-size:14px;color:${BRAND.text};border-bottom:1px solid ${BRAND.border};"><strong style="color:${BRAND.heading}">Budget?</strong> &nbsp; Starts from $290, payment plans available</td></tr>
+<tr><td style="padding:12px 0;font-size:14px;color:${BRAND.text};border-bottom:1px solid ${BRAND.border};"><strong style="color:${BRAND.heading}">Time?</strong> &nbsp; Self-paced. No deadlines. 30 min/day works</td></tr>
+<tr><td style="padding:12px 0;font-size:14px;color:${BRAND.text};"><strong style="color:${BRAND.heading}">Confidence?</strong> &nbsp; 6 months of practice is enough. You'll learn the rest</td></tr>
+</table>
+${btn("See Current Pricing →", "https://www.akashayogaacademy.com/200hr-yoga-teacher-training-online#christianimm")}
+${spacer()}
+${p("Whatever you decide — your yoga journey is yours, on your timeline.")}
+${spacer()}
+${p("Namaste 🙏<br><strong style='color:${BRAND.heading}'>Yoga Path Guide</strong>")}
+`),
   },
 ]
 

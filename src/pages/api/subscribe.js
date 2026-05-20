@@ -44,7 +44,7 @@ export default async function handler(req, res) {
         sender: { name: 'Yoga Path Guide', email: 'hello@yogapathguide.com' },
         to: [{ email }],
         subject: welcome.subject,
-        textContent: welcome.body.replace(/{{name}}/g, 'there'),
+        htmlContent: welcome.html,
       }),
     })
 
