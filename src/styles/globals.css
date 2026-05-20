@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply text-gray-700 font-sans antialiased;
+    line-height: 1.7;
+  }
+  h1, h2, h3, h4 {
+    @apply font-bold text-gray-900;
+    letter-spacing: -0.02em;
+  }
+  ::selection {
+    @apply bg-sage-100 text-sage-900;
+  }
+}
+
+@layer components {
+  .prose h2 {
+    @apply text-2xl mt-12 mb-4 text-gray-900 pb-2;
+  }
+  .prose h3 {
+    @apply text-lg font-semibold mt-8 mb-3 text-gray-800;
+  }
+  .prose p {
+    @apply mb-5 text-gray-600;
+    line-height: 1.8;
+  }
+  .prose ul {
+    @apply list-disc pl-6 mb-5 space-y-2;
+  }
+  .prose ol {
+    @apply list-decimal pl-6 mb-5 space-y-2;
+  }
+  .prose li {
+    @apply text-gray-600;
+    line-height: 1.7;
+  }
+  .prose a {
+    @apply text-sage-600 font-medium underline decoration-sage-200 underline-offset-4 hover:decoration-sage-500 transition-all;
+  }
+  .prose blockquote {
+    @apply border-l-[3px] border-sage-400 pl-5 py-3 my-6 bg-sage-50/50 rounded-r-xl text-gray-600 italic;
+  }
+  .prose table {
+    @apply w-full my-8 text-sm rounded-xl overflow-hidden;
+  }
+  .prose thead th {
+    @apply bg-gray-50 text-left px-4 py-3 font-semibold text-gray-800 text-xs uppercase tracking-wide;
+  }
+  .prose tbody td {
+    @apply px-4 py-3 border-b border-gray-50;
+  }
+  .prose tbody tr:hover {
+    @apply bg-gray-50/50;
+  }
+  .prose strong {
+    @apply text-gray-800 font-semibold;
+  }
+  .prose hr {
+    @apply my-10 border-gray-100;
+  }
+  .prose img {
+    @apply rounded-xl;
+  }
+}
