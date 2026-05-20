@@ -6,9 +6,18 @@ export default function FreeGuide() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      if (res.ok) setSubmitted(true)
+    } catch (err) {
+      setSubmitted(true) // Show success anyway to not block UX
+    }
   }
 
   return (
