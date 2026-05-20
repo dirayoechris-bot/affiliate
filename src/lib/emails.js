@@ -10,7 +10,7 @@ const EMAILS = [
 Your guide is ready — here's the download link:
 
 → Download "Your Yoga Teaching Journey" (PDF)
-https://yogapathguide.com/free-guide
+https://yogapathguide.com/guide
 
 Inside you'll find:
 - How to choose between yoga styles
