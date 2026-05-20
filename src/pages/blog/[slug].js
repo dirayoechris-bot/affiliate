@@ -5,6 +5,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
+import gfm from 'remark-gfm'
 
 export async function getStaticPaths() {
   const dir = path.join(process.cwd(), 'content/blog')
@@ -16,7 +17,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const file = path.join(process.cwd(), 'content/blog', `${params.slug}.md`)
   const { data, content } = matter(fs.readFileSync(file, 'utf8'))
-  const result = await remark().use(html).process(content)
+  const result = await remark().use(gfm).use(html).process(content)
   return { props: { meta: data, content: result.toString() } }
 }
 
