@@ -9,13 +9,15 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.5.1",
+    "@vercel/analytics": "^2.0.1",
     "gray-matter": "4.0.3",
     "next": "14.2.15",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "remark": "15.0.1",
     "remark-gfm": "^4.0.0",
-    "remark-html": "16.0.1"
+    "remark-html": "16.0.1",
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
     "autoprefixer": "10.4.20",

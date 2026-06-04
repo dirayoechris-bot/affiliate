@@ -6,11 +6,12 @@ import matter from 'gray-matter'
 import { remark } from 'remark'
 import gfm from 'remark-gfm'
 import html from 'remark-html'
+import remarkRedirectAffiliate from '@/lib/remark-redirect-affiliate'
 
 export async function getStaticProps() {
   const file = path.join(process.cwd(), 'content/lead-magnet/yoga-teaching-guide.md')
   const { content } = matter(fs.readFileSync(file, 'utf8'))
-  const result = await remark().use(gfm).use(html).process(content)
+  const result = await remark().use(gfm).use(remarkRedirectAffiliate).use(html).process(content)
   return { props: { content: result.toString() } }
 }
 

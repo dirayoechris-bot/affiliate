@@ -155,7 +155,7 @@ ${spacer()}
 <tr><td style="padding:12px 0;font-size:14px;color:${BRAND.text};border-bottom:1px solid ${BRAND.border};"><strong style="color:${BRAND.heading}">Time?</strong> &nbsp; Self-paced. No deadlines. 30 min/day works</td></tr>
 <tr><td style="padding:12px 0;font-size:14px;color:${BRAND.text};"><strong style="color:${BRAND.heading}">Confidence?</strong> &nbsp; 6 months of practice is enough. You'll learn the rest</td></tr>
 </table>
-${btn("See Current Pricing →", "https://www.akashayogaacademy.com/200hr-yoga-teacher-training-online#christianimm")}
+${btn("See Current Pricing →", "https://yogapathguide.com/go/akasha")}
 ${spacer()}
 ${p("Whatever you decide — your yoga journey is yours, on your timeline.")}
 ${spacer()}

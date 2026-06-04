@@ -6,6 +6,7 @@ import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
 import gfm from 'remark-gfm'
+import remarkRedirectAffiliate from '@/lib/remark-redirect-affiliate'
 
 export async function getStaticPaths() {
   const dir = path.join(process.cwd(), 'content/blog')
@@ -17,7 +18,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const file = path.join(process.cwd(), 'content/blog', `${params.slug}.md`)
   const { data, content } = matter(fs.readFileSync(file, 'utf8'))
-  const result = await remark().use(gfm).use(html).process(content)
+  const result = await remark().use(gfm).use(remarkRedirectAffiliate).use(html).process(content)
   // Coerce non-JSON-serializable values (e.g. YAML-parsed Date) to strings
   // so getStaticProps props pass JSON.stringify. Affects frontmatter `date`
   // when written without quotes (e.g. `date: 2026-05-31`).
