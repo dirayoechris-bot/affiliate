@@ -71,11 +71,15 @@ export default function FreeGuide() {
         </div>
 
         {/* Social proof */}
-        <div className="mb-10 max-w-[480px]">
+        <div className="mb-10 max-w-[480px] space-y-4">
           <p className="text-[13px] text-stone italic leading-relaxed">
             "I spent weeks googling before I found this guide. It answered every question I had in 15 minutes. Wish I'd found it sooner."
           </p>
-          <p className="text-[12px] text-stone mt-2">— Recent reader</p>
+          <p className="text-[12px] text-stone">— Recent reader</p>
+          <p className="text-[13px] text-stone italic leading-relaxed border-t border-driftwood/50 pt-4">
+            "This is the only guide that didn't feel like a sales pitch. The cost breakdown alone saved me from picking the wrong program."
+          </p>
+          <p className="text-[12px] text-stone">— Yoga teacher, 2 years practicing</p>
         </div>
 
         {/* Form */}
@@ -134,14 +138,14 @@ export default function FreeGuide() {
           </div>
         </div>
 
-        {/* Alternative */}
+        {/* Alternative (de-emphasized, no longer framed as a primary exit) */}
         <div className="mt-14 pt-10 border-t border-driftwood">
-          <p className="text-[13px] text-stone">
-            Prefer to browse without signing up? Our <Link href="/blog" className="text-sage hover:text-sage-deep transition-colors duration-300">articles</Link> and <Link href="/guide" className="text-sage hover:text-sage-deep transition-colors duration-300">full guide</Link> are free to read — no email needed.
+          <p className="text-[12px] text-stone">
+            Already read the guide? <Link href="/guide" className="text-sage hover:text-sage-deep transition-colors duration-300 underline">Open it again</Link> · or browse our <Link href="/blog" className="text-sage hover:text-sage-deep transition-colors duration-300 underline">latest articles</Link>.
           </p>
         </div>
 
-        <p className="text-[11px] text-stone italic mt-12 max-w-[480px]">
+        <p className="text-[11px] text-stone italic mt-8 max-w-[480px]">
           Disclosure: This page and the guide you receive contain affiliate links to yoga teacher training programs. If you purchase through them, we may earn a commission at no extra cost to you. We only recommend programs we&rsquo;ve researched and believe offer real value. See our <Link href="/terms" className="text-sage hover:text-sage-deep underline">Terms</Link>.
         </p>
       </div>

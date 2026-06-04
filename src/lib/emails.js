@@ -145,6 +145,7 @@ ${p("— Yoga Path Guide")}
   {
     day: 9,
     subject: "A question for you",
+    subjects: ["A question for you", "Last thought on YTT", "[YOGA] one more thing"],
     html: template(`
 ${h("If not now, when?")}
 ${p("I've seen people sit on this idea for months — waiting for the \"right time,\" waiting until they're \"good enough.\"")}

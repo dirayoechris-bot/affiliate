@@ -40,6 +40,19 @@ export default async function handler(req, res) {
       const emailToSend = EMAILS.find(e => e.day === daysSinceSignup)
       if (!emailToSend) continue
 
+      // A/B test: if multiple subjects defined, pick one and log the variant.
+      // Tagged in subject prefix as [vA]/[vB]/[vC] for Brevo segmentation later.
+      let subject = emailToSend.subject
+      let abVariant = null
+      if (Array.isArray(emailToSend.subjects) && emailToSend.subjects.length > 1) {
+        const idx = Math.floor(Math.random() * emailToSend.subjects.length)
+        subject = emailToSend.subjects[idx]
+        abVariant = String.fromCharCode(65 + idx) // A, B, C
+        // Prepend short variant tag for easy filtering in Brevo
+        subject = `[v${abVariant}] ${subject}`
+        console.log(`[ab-test] contact=${contact.email} day=${daysSinceSignup} variant=${abVariant} subject="${subject}"`)
+      }
+
       // Send via Brevo transactional
       const sendRes = await fetch('https://api.brevo.com/v3/smtp/email', {
         method: 'POST',
@@ -51,8 +64,9 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           sender: SENDER,
           to: [{ email: contact.email, name: contact.attributes?.FIRSTNAME || '' }],
-          subject: emailToSend.subject,
+          subject,
           htmlContent: emailToSend.html,
+          tags: abVariant ? [`ab-test-${abVariant.toLowerCase()}`] : undefined,
         }),
       })
 
