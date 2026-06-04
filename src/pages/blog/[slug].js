@@ -18,7 +18,15 @@ export async function getStaticProps({ params }) {
   const file = path.join(process.cwd(), 'content/blog', `${params.slug}.md`)
   const { data, content } = matter(fs.readFileSync(file, 'utf8'))
   const result = await remark().use(gfm).use(html).process(content)
-  return { props: { meta: data, content: result.toString() } }
+  // Coerce non-JSON-serializable values (e.g. YAML-parsed Date) to strings
+  // so getStaticProps props pass JSON.stringify. Affects frontmatter `date`
+  // when written without quotes (e.g. `date: 2026-05-31`).
+  const meta = { ...data }
+  if (meta.date instanceof Date) meta.date = meta.date.toISOString().split('T')[0]
+  for (const k of Object.keys(meta)) {
+    if (meta[k] instanceof Date) meta[k] = meta[k].toISOString().split('T')[0]
+  }
+  return { props: { meta, content: result.toString() } }
 }
 
 export default function Post({ meta, content }) {
