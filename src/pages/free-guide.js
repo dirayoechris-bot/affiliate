@@ -4,15 +4,17 @@ import { useState } from 'react'
 
 export default function FreeGuide() {
   const [email, setEmail] = useState('')
+  const [consent, setConsent] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (!consent) return
     try {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, consent: true }),
       })
       if (res.ok) setSubmitted(true)
     } catch (err) {
@@ -86,21 +88,37 @@ export default function FreeGuide() {
         ) : (
           <div className="max-w-[480px]">
             <p className="text-[13px] text-ink font-medium mb-3">Get the guide + 5 helpful emails:</p>
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                required
-                placeholder="Your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-5 py-3.5 border border-driftwood rounded-pill bg-white text-ink placeholder:text-stone focus:outline-none focus:border-sage transition-colors duration-300"
-                aria-label="Email address"
-              />
-              <button type="submit" className="bg-sage-deep text-white px-7 py-3.5 rounded-pill text-[13px] font-medium hover:opacity-90 transition-opacity duration-300 whitespace-nowrap">
-                Send it to me
-              </button>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  required
+                  placeholder="Your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="flex-1 px-5 py-3.5 border border-driftwood rounded-pill bg-white text-ink placeholder:text-stone focus:outline-none focus:border-sage transition-colors duration-300"
+                  aria-label="Email address"
+                />
+                <button type="submit" disabled={!consent} className="bg-sage-deep text-white px-7 py-3.5 rounded-pill text-[13px] font-medium hover:opacity-90 transition-opacity duration-300 whitespace-nowrap disabled:opacity-40 disabled:cursor-not-allowed">
+                  Send it to me
+                </button>
+              </div>
+              <label className="flex items-start gap-2.5 text-[12px] text-stone leading-relaxed cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  className="mt-0.5 shrink-0 accent-sage-deep"
+                  required
+                />
+                <span>
+                  I agree to receive the guide and a 5-email sequence. I&rsquo;ve read the{' '}
+                  <Link href="/privacy" className="text-sage hover:text-sage-deep underline">Privacy Policy</Link>{' '}
+                  and{' '}
+                  <Link href="/terms" className="text-sage hover:text-sage-deep underline">Terms</Link>. Unsubscribe anytime.
+                </span>
+              </label>
             </form>
-            <p className="text-[12px] text-stone mt-3">Free forever. No spam. Unsubscribe anytime.</p>
           </div>
         )}
 
@@ -122,6 +140,10 @@ export default function FreeGuide() {
             Prefer to browse without signing up? Our <Link href="/blog" className="text-sage hover:text-sage-deep transition-colors duration-300">articles</Link> and <Link href="/guide" className="text-sage hover:text-sage-deep transition-colors duration-300">full guide</Link> are free to read — no email needed.
           </p>
         </div>
+
+        <p className="text-[11px] text-stone italic mt-12 max-w-[480px]">
+          Disclosure: This page and the guide you receive contain affiliate links to yoga teacher training programs. If you purchase through them, we may earn a commission at no extra cost to you. We only recommend programs we&rsquo;ve researched and believe offer real value. See our <Link href="/terms" className="text-sage hover:text-sage-deep underline">Terms</Link>.
+        </p>
       </div>
     </Layout>
   )

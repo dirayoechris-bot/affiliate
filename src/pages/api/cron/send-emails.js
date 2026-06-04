@@ -13,16 +13,26 @@ export default async function handler(req, res) {
   const SENDER = { name: 'Yoga Path Guide', email: 'hello@yogapathguide.com' }
 
   try {
-    // Get all contacts with their signup date attribute
-    const contactsRes = await fetch('https://api.brevo.com/v3/contacts?limit=50&sort=desc', {
-      headers: { 'api-key': API_KEY, 'accept': 'application/json' },
-    })
-    const { contacts = [] } = await contactsRes.json()
+    // Paginate through all contacts (Brevo default limit=50, max=50 per request)
+    const allContacts = []
+    let offset = 0
+    const pageSize = 50
+    while (true) {
+      const contactsRes = await fetch(
+        `https://api.brevo.com/v3/contacts?limit=${pageSize}&offset=${offset}&sort=desc`,
+        { headers: { 'api-key': API_KEY, 'accept': 'application/json' } }
+      )
+      const data = await contactsRes.json()
+      const batch = data.contacts || []
+      allContacts.push(...batch)
+      if (batch.length < pageSize) break
+      offset += pageSize
+    }
 
     const now = new Date()
     let sent = 0
 
-    for (const contact of contacts) {
+    for (const contact of allContacts) {
       const signupDate = new Date(contact.attributes?.SIGNUP_DATE || contact.createdAt)
       const daysSinceSignup = Math.floor((now - signupDate) / (1000 * 60 * 60 * 24))
 
