@@ -1,5 +1,5 @@
 ---
-title: Prenatal Yoga Teacher Training Online 2026: Complete Guide
+title: "Prenatal Yoga Teacher Training Online 2026: Complete Guide"
 date: 2026-05-23
 excerpt: Looking to specialize in prenatal yoga teaching? This comprehensive guide compares online prenatal yoga teacher training programs for 2026, including costs, curriculum, certification, and our top recommendation.
 readTime: 8

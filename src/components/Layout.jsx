@@ -48,6 +48,10 @@ export default function Layout({ children, title, description }) {
               </div>
             </div>
             <p className="text-[11px] text-stone tracking-wide">© 2026 Yoga Path Guide · We may earn a commission at no extra cost to you.</p>
+            <p className="text-[11px] text-stone tracking-wide mt-2 space-x-4">
+              <Link href="/privacy" className="hover:text-ink transition-colors duration-300">Privacy</Link>
+              <Link href="/terms" className="hover:text-ink transition-colors duration-300">Terms</Link>
+            </p>
           </div>
         </footer>
       </div>

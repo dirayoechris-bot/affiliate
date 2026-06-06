@@ -58,7 +58,8 @@ const EMAILS = [
     html: template(`
 ${h("Your guide is ready")}
 ${p("Hi there — thanks for downloading. Here's your guide:")}
-${btn("Read Your Yoga Teaching Guide →", "https://yogapathguide.com/guide")}
+${btn("Download the PDF →", "https://yogapathguide.com/api/generate-pdf")}
+${p("<a href='https://yogapathguide.com/guide' style='color:${BRAND.sage};font-size:13px;'>Or read it online →</a>")}
 ${spacer()}
 ${p("Inside you'll find:")}
 <ul style="margin:0 0 16px;padding-left:20px;color:${BRAND.text};font-size:14px;line-height:2;">
@@ -71,6 +72,7 @@ ${p("Inside you'll find:")}
 ${p("Take your time with it. No rush.")}
 ${p("Over the next few days, I'll share a few things I wish someone told me before starting. Short emails, no fluff.")}
 ${spacer()}
+${p("<em style='font-size:12px;color:${BRAND.muted}'>Disclosure: Some links in this email and in our guides are affiliate links. If you purchase through them, we may earn a commission at no extra cost to you. We only recommend programs we genuinely believe in.</em>")}
 ${p("Talk soon,<br><strong style='color:${BRAND.heading}'>Yoga Path Guide</strong>")}
 ${p("<em style='font-size:13px;color:${BRAND.muted}'>P.S. — Just reply if you have questions. I read everything.</em>")}
 `),
@@ -143,6 +145,7 @@ ${p("— Yoga Path Guide")}
   {
     day: 9,
     subject: "A question for you",
+    subjects: ["A question for you", "Last thought on YTT", "[YOGA] one more thing"],
     html: template(`
 ${h("If not now, when?")}
 ${p("I've seen people sit on this idea for months — waiting for the \"right time,\" waiting until they're \"good enough.\"")}
@@ -153,7 +156,7 @@ ${spacer()}
 <tr><td style="padding:12px 0;font-size:14px;color:${BRAND.text};border-bottom:1px solid ${BRAND.border};"><strong style="color:${BRAND.heading}">Time?</strong> &nbsp; Self-paced. No deadlines. 30 min/day works</td></tr>
 <tr><td style="padding:12px 0;font-size:14px;color:${BRAND.text};"><strong style="color:${BRAND.heading}">Confidence?</strong> &nbsp; 6 months of practice is enough. You'll learn the rest</td></tr>
 </table>
-${btn("See Current Pricing →", "https://www.akashayogaacademy.com/200hr-yoga-teacher-training-online#christianimm")}
+${btn("See Current Pricing →", "https://yogapathguide.com/go/akasha")}
 ${spacer()}
 ${p("Whatever you decide — your yoga journey is yours, on your timeline.")}
 ${spacer()}

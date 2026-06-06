@@ -10,7 +10,9 @@ export async function getStaticProps() {
   const files = fs.readdirSync(dir).filter(f => f.endsWith('.md'))
   const posts = files.map(file => {
     const { data } = matter(fs.readFileSync(path.join(dir, file), 'utf8'))
-    return { slug: file.replace('.md', ''), ...data }
+    const post = { slug: file.replace('.md', ''), ...data }
+    if (post.date instanceof Date) post.date = post.date.toISOString().split('T')[0]
+    return post
   }).sort((a, b) => new Date(b.date) - new Date(a.date))
   return { props: { posts } }
 }
